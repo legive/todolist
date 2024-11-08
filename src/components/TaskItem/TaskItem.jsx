@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+
+import { useTaskItem } from "../../hooks/useTaskItem";
 import "./taskitem.css";
 export default function TaskItem({
   task,
@@ -7,20 +8,7 @@ export default function TaskItem({
   handleDelete,
   handleUpdateTask,
 }) {
-  const { id, name, isComplete } = task;
-  const [update, setUpdate] = useState(false);
-  const [newName, setnewName] = useState(name);
-
-  const handleUpdate = () => {
-    setUpdate(!update);
-    if (update === true) {
-      handleUpdateTask(id, newName);
-    }
-  };
-
-  const handledName = (e) => {
-    setnewName(e.target.value);
-  };
+  const{id,name,isComplete, update,newName,handledName, handleUpdate}=useTaskItem(task,handleUpdateTask)
 
   return (
     <div className="tasks">

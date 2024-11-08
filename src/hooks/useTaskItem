@@ -1,0 +1,20 @@
+import { useState } from "react";
+export const useTaskItem = (task, handleUpdateTask) => {
+  const { id, name, isComplete } = task;
+  const [update, setUpdate] = useState(false);
+  const [newName, setnewName] = useState(name);
+
+  const handleUpdate = () => {
+    setUpdate(!update);
+    if (update === true) {
+      handleUpdateTask(id, newName);
+    }
+  };
+
+  const handledName = (e) => {
+    setnewName(e.target.value);
+  };
+    return {
+      id, name, isComplete,update,newName, handleUpdate, handledName
+  };
+};
